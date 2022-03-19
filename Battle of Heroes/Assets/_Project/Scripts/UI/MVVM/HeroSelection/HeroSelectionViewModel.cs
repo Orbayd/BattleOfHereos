@@ -10,11 +10,11 @@ namespace BattleOfHeroes.Showcase.UI
 {
     public class HeroSelectionViewModel : ViewModelBase
     {
-        public List<HeroData> Itemsource {get; private set;} = new List<HeroData>();
+        public List<HeroDbo> Itemsource {get; private set;} = new List<HeroDbo>();
         
-        private List<HeroData> _selectedHereos  = new List<HeroData>();
+        private List<HeroDbo> _selectedHereos  = new List<HeroDbo>();
 
-        public HeroSelectionViewModel(HeroConfig config)
+        public HeroSelectionViewModel(UserDbo config)
         {
             Itemsource = config.Heroes;
         }

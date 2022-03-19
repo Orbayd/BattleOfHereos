@@ -25,7 +25,8 @@ namespace BattleOfHeroes.Showcase.Core
             }
             else
             {
-                MessageBus.Publish<ShowToolTipEvent>(new ShowToolTipEvent(GetCreatureData() as HeroData, Camera.main.WorldToScreenPoint(transform.position)));
+                
+                MessageBus.Publish<ShowToolTipEvent>(new ShowToolTipEvent(GetCreatureData(), Camera.main.WorldToScreenPoint(transform.position)));
             }
         }
 

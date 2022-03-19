@@ -26,7 +26,7 @@ namespace BattleOfHeroes.Showcase.Core
             Creature.TakeDamage(dmg);
         }
 
-        public CreatureData GetCreatureData()
+        public HeroDbo GetCreatureData()
         {
            return Creature.GetCreatureData();
         }

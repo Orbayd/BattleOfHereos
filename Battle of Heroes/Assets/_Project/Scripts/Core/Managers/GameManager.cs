@@ -1,70 +1,95 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using BattleOfHeroes.Showcase.Helpers;
+using BattleOfHeroes.Showcase.Core;
 using BattleOfHeroes.Showcase.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace BattleOfHeroes.Showcase.Managers
 {
-    public static class PersistentStorage
-    {
-        public static List<HeroData> SelectedHeroes { get; set; } = new List<HeroData>();
-    }
     public class GameManager : MonoBehaviour
     {
-        [Header("Repository Dependencies")]
         [SerializeField]
-        private HeroConfig _heroConfig;
-
-        [SerializeField]
-        private UIManager _uIManager;
-
-        private RepositoryManager _repository;
-
-        private void Start()
+        DependencyManager _dependencyManager;
+        void Awake()
         {
-           Init();
+            Init();
         }
 
-        private void OnDestroy()
+        void OnDestroy()
         {
-            Terminate();
+            // SceneManager.sceneLoaded -= OnSceneLoaded;
+            // SceneManager.sceneUnloaded -= OnSceneUnLoaded;
+            RemoveEvents();
         }
 
         private void Init()
         {
-            InitRepository();
-            InitUI();
+            _dependencyManager.HandleDependencies();
             AddEvents();
         }
 
-        private void Terminate()
+        private void OnBattleFinished(BattleFinishedEvent e)
         {
-            RemoveEvents();
-            _uIManager.Terminate();
-        }
-
-        private void InitRepository()
-        {
-            _repository = new RepositoryManager(_heroConfig);
-            _repository.Load();
-        }
-
-        private void InitUI()
-        {
-            _uIManager.Init();
+            var _repostioryService = ServiceLocator.GetService<RepositoryService>();
+            var _userDbo = _repostioryService.Dbo;
+            _userDbo.BattleCount++;
+            if(!e.IsLost)
+            {
+                _userDbo.Level++;
+                foreach (var hero in e.Data)
+                {
+                    var creaturedata = hero.GetCreatureData();
+                    creaturedata.Experience++; 
+                    if(creaturedata.Experience >=5)
+                    {
+                        creaturedata.Level++;
+                        creaturedata.Experience = 0;
+                    }
+                }
+            }
+            if( _userDbo.BattleCount % 5 == 0)
+            {
+                var nextAvaible = _userDbo.Heroes.First(x=>x.IsAvailable == false);
+                nextAvaible.IsAvailable = true;
+            }
+            
+            _repostioryService.Save();
         }
 
         private void AddEvents()
         {
-         
+            Helpers.MessageBus.Subscribe<BattleFinishedEvent>((e)=>OnBattleFinished(e));
         }
-        
+
         private void RemoveEvents()
         {
-            
+            Helpers.MessageBus.UnSubscribe<BattleFinishedEvent>();
         }
+
+        // void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        // {
+        //     Debug.Log("[INFO] Scene Loaded");
+        //     ServiceLocator.GetService<UIManager>().InitPresentation(SceneManager.GetActiveScene().name);
+        //     if (scene.name == "GameScene")
+        //     {
+        //         ServiceLocator.GetService<TurnManager>().Init();
+        //     }
+        //     else if (scene.name == "MainMenuScene")
+        //     {
+        //         ServiceLocator.GetService<UIManager>().Navigate(Enums.ViewName.HeroSelection);
+        //     }
+        // }
+
+        // void OnSceneUnLoaded(Scene scene)
+        // {
+        //     Debug.Log("[INFO] Scene UnLoaded");
+        //     ServiceLocator.GetService<UIManager>().TerminatePresentation();
+        //     if (scene.name == "GameScene")
+        //     {
+        //         ServiceLocator.GetService<TurnManager>().Terminate();
+        //     }
+        // }
     }
 }

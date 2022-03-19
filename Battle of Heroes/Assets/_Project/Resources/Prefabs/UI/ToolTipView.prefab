@@ -1342,7 +1342,7 @@ GameObject:
   - component: {fileID: 322890139086868613}
   - component: {fileID: 322890139086868610}
   m_Layer: 5
-  m_Name: HeroToolTip
+  m_Name: ToolTipView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1381,10 +1381,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ddf6e41e642458080827a2e32a3f3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _txtName: {fileID: 322890139267965930}
-  _txtHealth: {fileID: 322890138397787389}
-  _txtAttackPower: {fileID: 322890137809435553}
-  _textExperience: {fileID: 322890137752049270}
+  _txtName: {fileID: 322890138545257900}
+  _txtHealth: {fileID: 322890139067098511}
+  _txtAttackPower: {fileID: 322890138455453943}
+  _textExperience: {fileID: 322890138344461825}
 --- !u!222 &322890139086868612
 CanvasRenderer:
   m_ObjectHideFlags: 0

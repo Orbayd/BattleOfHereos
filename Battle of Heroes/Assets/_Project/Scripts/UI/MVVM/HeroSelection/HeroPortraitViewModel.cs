@@ -8,11 +8,11 @@ namespace BattleOfHeroes.Showcase.UI
 {
     public class HeroPortraitViewModel : ViewModelBase
     {
-        public HeroData Data {get; private set;}
+        public HeroDbo Data {get; private set;}
         private bool _isSelected = false;
         public bool IsSelected { get {return _isSelected;} set{ _isSelected = value; NotifyPropertyChanged();}}
 
-        public HeroPortraitViewModel(HeroData data)
+        public HeroPortraitViewModel(HeroDbo data)
         {
             Data = data;
         }

@@ -22,7 +22,7 @@ namespace BattleOfHeroes.Showcase.UI
 
         protected override void OnBind(HeroPortraitViewModel model)
         {
-            _txtName.text = model.Data.Name;
+            _txtName.text = model.Data.HeroData.Name;
             _outLine.enabled = false;
 
             model.PropertyChanged += OnNotifyPropertyChanged;

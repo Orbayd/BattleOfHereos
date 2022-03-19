@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9811fc0c1987a41b988a5def2c1b2e5d, type: 3}
+  m_Name: SpawnConfig
+  m_EditorClassIdentifier: 
+  HereosPositon:
+  - {x: -4.29, y: 0}
+  - {x: -6.89, y: 1.8}
+  - {x: -6.89, y: -1.8}
+  MonsterPosition: {x: 4.8, y: 0}
+  HeroTemplate: {fileID: 4836965429976313097, guid: 02f39cf91c7fb424ca7eacada0acd50c, type: 3}
+  MonsterTemplate: {fileID: 7759839283890802857, guid: f5638473817bb4214a4c2058465c8fd3, type: 3}

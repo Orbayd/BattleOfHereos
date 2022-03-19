@@ -7,6 +7,8 @@ namespace BattleOfHeroes.Showcase.UI
     public interface IView
     {
         void Show(bool value);
+        void UnBind();
+        void Bind(object o);
     }
     public abstract class ViewBase<TModel> : MonoBehaviour, IView where TModel : ViewModelBase
     {
@@ -47,5 +49,10 @@ namespace BattleOfHeroes.Showcase.UI
         }
 
         protected virtual void OnUnBind(TModel model) { }
+
+        public void Bind(object o)
+        {
+            Bind(o as TModel);
+        }
     }
 }

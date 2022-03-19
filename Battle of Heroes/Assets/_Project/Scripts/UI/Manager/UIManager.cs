@@ -9,61 +9,81 @@ using UnityEngine;
 
 namespace BattleOfHeroes.Showcase.Managers
 {
-    public class UIManager : MonoBehaviour
+    public class UIManager : IService
     {
-        private List<IView> _views = new List<IView>();
-
-        [SerializeField]
-        private Transform _viewHolder;
-
-        [SerializeField]
-        private UIConfig _uiConfig;
-
-        [SerializeField]
-        public ViewName _starter;
-
-        [SerializeField]
-        public bool NavigateOnStart = false;
-
+        private List<GameObject> _views = new List<GameObject>();
         private Dictionary<ViewName, IView> _viewMap = new Dictionary<ViewName, IView>();
 
-        [Header("ToolTip")]
-        [SerializeField]
+        private UserDbo _userDbo;
+
         private HeroTooltipView _tooltipView;
+
+        private UIConfig _uIConfig;
+
+        public UIManager(UIConfig uIConfig,UserDbo userDbo)
+        { 
+            _userDbo = userDbo;
+            _uIConfig = uIConfig;
+        }
 
         public void Init()
         {
-            if (!_views.Any())
-            {
-                _views = _viewHolder.GetComponentsInChildren<IView>(true).ToList();
-            }
-            foreach (var view in _views)
-            {
-                Bind(view);
-            }
-
             AddEvents();
-
-            if (NavigateOnStart)
-                Navigate(_starter);
         }
 
         public void Terminate()
         {
-            foreach (var view in _views)
+            RemoveEvents();
+        }
+
+        public void TerminatePresentation()
+        {
+            foreach (var view in _viewMap)
             {
-                   
+                view.Value.UnBind();
+            }
+            _viewMap.Clear();
+
+            foreach (var viewGo in _views)
+            {
+                MonoBehaviour.Destroy(viewGo);
             }
 
-            RemoveEvents();
+            _views.Clear();
+
+            // if(!(_tooltipView?.gameObject is null))
+            // {
+            //     MonoBehaviour.Destroy(_tooltipView.gameObject);
+            // }
+            _tooltipView = null;
+        }
+
+        public void InitPresentation(string name)
+        {
+            var scene =_uIConfig.SceneViews.First(x=>x.SceneName == name);
+            var canvas  =  MonoBehaviour.FindObjectOfType<Canvas>();
+            foreach (var view in scene.Views)
+            {
+                var viewGo = GameObject.Instantiate(view.Prefab,canvas.transform);
+                Bind(viewGo.GetComponent<IView>());
+                _views.Add(viewGo);
+            }
+
+            if(_tooltipView is null)
+            {
+                var tooltip = _uIConfig.Commons.First(x=> x.Name == ViewName.Tooltip);
+                var tooltipGo = GameObject.Instantiate(tooltip.Prefab,canvas.transform);
+                _tooltipView = tooltipGo.GetComponent<HeroTooltipView>();
+                _tooltipView.gameObject.SetActive(false);
+            }
         }
 
         private void Bind(IView view)
         {
-            if (view is HeroSelectionView v)
+            if (view is HeroSelectionView heroSelectionView)
             {
-                //var model = new HeroSelectionViewModel();
-                v.Bind(_uiConfig.CreateViewModel(ViewName.HeroSelection) as HeroSelectionViewModel);
+                var model = new HeroSelectionViewModel(_userDbo);
+                heroSelectionView.Bind(model);
                 _viewMap.Add(ViewName.HeroSelection, view);
             }
             else if (view is BattleResultView battleResultView)
@@ -83,16 +103,16 @@ namespace BattleOfHeroes.Showcase.Managers
             _viewMap[name].Show(true);
         }
 
-        private void OnShowTooltip(ShowToolTipEvent x)
+        private void OnShowTooltip(ShowToolTipEvent e)
         {
-            _tooltipView.Bind(new HeroTooltipViewModel(x.Data));
-            _tooltipView.transform.position = x.Position;
+            _tooltipView.Bind(new HeroTooltipViewModel(e.Data.HeroData));
+            _tooltipView.transform.position = e.Position;
             _tooltipView.Show(true);
         }
 
         public void AddEvents()
         {
-            MessageBus.Subscribe<ShowToolTipEvent>(x => OnShowTooltip(x));
+            MessageBus.Subscribe<ShowToolTipEvent>(e => OnShowTooltip(e));
         }
 
         public void RemoveEvents()

@@ -5,8 +5,9 @@ using System.Linq;
 using Newtonsoft.Json;
 using UnityEngine;
 
+public interface IService{}
 
-public class RepositoryManager
+public class RepositoryService : IService
 {
     private string FileName => "UserDbo";
 
@@ -16,7 +17,7 @@ public class RepositoryManager
 
     private HeroConfig _config;
 
-    public RepositoryManager(HeroConfig config)
+    public RepositoryService(HeroConfig config)
     {
         _config = config;
     }

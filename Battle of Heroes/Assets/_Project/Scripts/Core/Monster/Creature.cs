@@ -10,10 +10,12 @@ namespace BattleOfHeroes.Showcase.Core
         private CreatureData _data;
         private CreatureType _type;
         private CreatureBase _creature;
+        private HeroDbo _heroDbo;
 
-        public Creature(CreatureData data, CreatureType type, CreatureBase creature)
+        public Creature(HeroDbo data, CreatureType type, CreatureBase creature)
         {
-            _data = data;
+            _heroDbo = data;
+            _data = _heroDbo.HeroData;
             _type = type;
             _transform = creature.transform;
             _creature = creature;
@@ -51,9 +53,9 @@ namespace BattleOfHeroes.Showcase.Core
              _creature.gameObject.SetActive(false);
         }
 
-        public CreatureData GetCreatureData()
+        public HeroDbo GetCreatureData()
         {
-            return _data;
+            return _heroDbo;
         }
     }
 }

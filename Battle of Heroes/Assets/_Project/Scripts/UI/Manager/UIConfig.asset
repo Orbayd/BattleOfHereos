@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 841d2ae8f0b304c4c99f76a45b4fe335, type: 3}
   m_Name: UIConfig
   m_EditorClassIdentifier: 
-  battleResult:
-    id: 0
-  ViewModelDependencies:
-  - Name: 2
-    dependency:
-    - {fileID: 11400000, guid: fe429affa06d74a1299229bb7761052d, type: 2}
-  - Name: 1
-    dependency: []
-  references:
-    version: 1
-    00000000:
-      type: {class: , ns: , asm: }
+  SceneViews:
+  - SceneName: MainMenuScene
+    Views:
+    - Name: 2
+      Prefab: {fileID: 138289154188219666, guid: e563d380b4f4f4346b71ce5eb030bce6, type: 3}
+  - SceneName: GameScene
+    Views:
+    - Name: 1
+      Prefab: {fileID: 4287469973211483595, guid: 4201bee0a0857416dba240e810165d51, type: 3}
+  Commons:
+  - Name: 3
+    Prefab: {fileID: 322890139086868608, guid: 52a1c4d16ee184c5eb2d1cac953f3f23, type: 3}

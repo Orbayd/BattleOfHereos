@@ -4,7 +4,7 @@ namespace BattleOfHeroes.Showcase.Core
 {
     public class CreatureFactory
     {
-        public Hero CreateHero(GameObject prefab, HeroData data, Vector2 position)
+        public Hero CreateHero(GameObject prefab, HeroDbo data, Vector2 position)
         {
             var go = MonoBehaviour.Instantiate(prefab, position, Quaternion.identity);
             var hero = go.AddComponent<Hero>();
@@ -13,7 +13,7 @@ namespace BattleOfHeroes.Showcase.Core
             return hero;
         }
 
-        public Monster CreateMonster(GameObject prefab, MonsterData data, Vector2 position)
+        public Monster CreateMonster(GameObject prefab, HeroDbo data, Vector2 position)
         {
             var go = MonoBehaviour.Instantiate(prefab, position, Quaternion.identity);
             var monster = go.AddComponent<Monster>();
@@ -24,7 +24,8 @@ namespace BattleOfHeroes.Showcase.Core
 
         public Monster CreateMonster(GameObject prefab, Vector2 position, int level)
         {
-            var MonsterData = new MonsterData()
+            
+            var MonsterData = new HeroData()
             {
                 Name = "Monster",
                 Health = 100,
@@ -32,7 +33,14 @@ namespace BattleOfHeroes.Showcase.Core
                 Level = level
             };
 
-            return CreateMonster(prefab,MonsterData,position);
+            var heroDbo = new HeroDbo()
+            {
+                Level = level,
+                HeroData = MonsterData,
+                Id = "Monster"
+            };
+
+            return CreateMonster(prefab, heroDbo, position);
         }
     }
 }

@@ -8,77 +8,52 @@ using UnityEngine;
 
 namespace BattleOfHeroes.Showcase.Managers
 {
-    public class TurnManager : MonoBehaviour
+    public class TurnManager : IService
     {
-        [SerializeField]
-        private Vector2[] _hereosPositon;
-
-        [SerializeField]
-        private Vector2 _monsterPosition;
-
-        [SerializeField]
-        private GameObject _heroTemplate;
-
-        [SerializeField]
-        private GameObject _monsterTemplate;
-
         private List<CreatureBase> _heroes = new List<CreatureBase>();
-
         private List<CreatureBase> _monsters = new List<CreatureBase>();
-
-        private CreatureFactory _factory;
-
         private bool IsPlayersTurn = true;
-
-        [SerializeField]
-        private HeroConfig _config;
-
-        [SerializeField]
         private UIManager _uIManager;
+        private RepositoryService _repostioryService;
 
-        void Start()
+        private WorldFactory _worldFactory;
+
+        public TurnManager(WorldFactory factory, UIManager uIManager)
         {
-            InitFactories();
-            InitHeroes();
-            InitMonsters();
+            _worldFactory = factory;
+            _uIManager = uIManager;
+        }
+
+        public void Init()
+        {
+            CreateWorld();
             AddEvents();
         }
-
-        void OnDisable()
+        public void Terminate()
         {
             RemoveEvents();
+            DestroyWorld();
         }
-
-        public void InitFactories()
+        private void DestroyWorld()
         {
-            _factory = new CreatureFactory();
+            foreach (var hero in _heroes.Where(x=> x != null))
+            {
+                MonoBehaviour.Destroy(hero.gameObject);
+            }
+            _heroes.Clear();
+
+            foreach (var monster in _monsters.Where(x=> x != null))
+            {
+                MonoBehaviour.Destroy(monster.gameObject);
+            }
+            _monsters.Clear();
         }
-
-        public void InitHeroes()
+        private void CreateWorld()
         {
-            var heroesdata = new List<HeroData>();
-            if (PersistentStorage.SelectedHeroes.Any())
-            {
-                heroesdata = PersistentStorage.SelectedHeroes;
-            }
-            else
-            {
-                heroesdata = _config.Heroes.Take(3).ToList();
-            }
-
-            for (int i = 0; i < heroesdata.Count; i++)
-            {
-                var hero = _factory.CreateHero(_heroTemplate, heroesdata[i], _hereosPositon[i]);
-                _heroes.Add(hero);
-
-            }
-        }
-
-        public void InitMonsters()
-        {
-           
-            var monster = _factory.CreateMonster(_monsterTemplate,_monsterPosition,1);
-            _monsters.Add(monster);
+            _heroes = _worldFactory.CreateHeroes();
+            _monsters =_worldFactory.CreateMonsters();
+            
+            IsPlayersTurn = true;
         }
 
         IEnumerator MonsterAttackRoutine()
@@ -109,15 +84,14 @@ namespace BattleOfHeroes.Showcase.Managers
             {
                 if (e.IsAlive)
                 {
-                    StartCoroutine(MonsterAttackRoutine());
+                    CoroutineHelper.Singleton.StartRoutine(MonsterAttackRoutine());
                 }
                 else
                 {
                     _monsters.Remove(e.Creature);
                     if (!_monsters.Any())
                     {
-                        MessageBus.Publish(new BattleFinishedEvent(false));
-                        _uIManager.Navigate(Enums.ViewName.BattleResult);
+                        BattleFinished(false);
                     }
                 }
             }
@@ -128,12 +102,17 @@ namespace BattleOfHeroes.Showcase.Managers
                     _heroes.Remove(e.Creature);
                     if (!_heroes.Any())
                     {
-                        MessageBus.Publish(new BattleFinishedEvent(true));
-                        _uIManager.Navigate(Enums.ViewName.BattleResult);
+                        BattleFinished(true);
                     }
                 }
             }
             
+        }
+
+        private void BattleFinished(bool isLost)
+        {
+            MessageBus.Publish(new BattleFinishedEvent(isLost,_heroes.ToArray()));
+            _uIManager.Navigate(Enums.ViewName.BattleResult);
         }
 
         private void AddEvents()

@@ -8,6 +8,6 @@ namespace BattleOfHeroes.Showcase.Core
         void Attack(ICreature target, Vector2 pos);
         void TakeDamage(float dmg);
         void Die();
-        CreatureData GetCreatureData();
+        HeroDbo GetCreatureData();
     }
 }

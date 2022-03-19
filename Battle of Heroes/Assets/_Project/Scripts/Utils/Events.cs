@@ -10,11 +10,11 @@ using UnityEngine;
 
 public class HeroSelectedEvent
 {
-    public HeroData Data {get; private set;}
+    public HeroDbo Data {get; private set;}
 
     public HeroPortraitViewModel HeroPortrait {get; private set;}
 
-    public HeroSelectedEvent(HeroData data ,HeroPortraitViewModel viewModel)
+    public HeroSelectedEvent(HeroDbo data ,HeroPortraitViewModel viewModel)
     {
         this.Data = data;
         HeroPortrait = viewModel;
@@ -23,11 +23,11 @@ public class HeroSelectedEvent
 
 public class ShowToolTipEvent
 {
-    public HeroData Data {get; private set;}
+    public HeroDbo Data {get; private set;}
 
     public Vector2 Position {get; private set;}
 
-    public ShowToolTipEvent(HeroData data, Vector2 position)
+    public ShowToolTipEvent(HeroDbo data, Vector2 position)
     {
         Data = data;
         Position = position;
@@ -72,9 +72,11 @@ public class DamageTaken
 public class BattleFinishedEvent
 {
     public bool IsLost {get; private set;}
-    public BattleFinishedEvent(bool status)
+    public CreatureBase[] Data {get; private set;}
+    public BattleFinishedEvent(bool status,CreatureBase[] data)
     {
         IsLost = status;
+        Data = data;
     }
 }
 
