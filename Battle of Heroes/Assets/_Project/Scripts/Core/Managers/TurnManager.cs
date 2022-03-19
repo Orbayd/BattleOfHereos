@@ -63,7 +63,7 @@ namespace BattleOfHeroes.Showcase.Managers
 
         private void MonsterAttack()
         {
-            IsPlayersTurn = true;
+         
             var target = _heroes.ElementAt(UnityEngine.Random.Range(0,_heroes.Count));
             _monsters.First().Attack(target,target.transform.position);
 
@@ -96,6 +96,7 @@ namespace BattleOfHeroes.Showcase.Managers
             }
             else
             {
+                IsPlayersTurn = true;
                 if (!e.IsAlive)
                 {
                     _heroes.Remove(e.Creature);

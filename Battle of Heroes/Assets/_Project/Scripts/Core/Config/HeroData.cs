@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 [Serializable]
 public class HeroData : CreatureData
@@ -15,4 +16,7 @@ public class CreatureData
     public float AttackPower;
     public int StartingLevel;
     public float PowerUpPerLevel = 0.1f;
+    public Sprite Sprite;
+    public Sprite Frame; 
+    public Color Color; 
 }

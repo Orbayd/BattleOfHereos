@@ -29,10 +29,13 @@ MonoBehaviour:
       type: {class: HeroData, ns: , asm: Assembly-CSharp}
       data:
         Name: Jack
-        Health: 40
-        AttackPower: 100
+        Health: 60
+        AttackPower: 5
         StartingLevel: 1
         PowerUpPerLevel: 0.1
+        Sprite: {fileID: 21300000, guid: 337c5691f3c2a4824809d55405e29ddd, type: 3}
+        Frame: {fileID: 21300000, guid: 6589c385430484cbcb5c84e7d800c54f, type: 3}
+        Color: {r: 0, g: 1, b: 0.092865944, a: 1}
         Id: 1
         IsAvailableAtStart: 1
     00000001:
@@ -43,26 +46,35 @@ MonoBehaviour:
         AttackPower: 10
         StartingLevel: 1
         PowerUpPerLevel: 0.1
+        Sprite: {fileID: 21300000, guid: 337c5691f3c2a4824809d55405e29ddd, type: 3}
+        Frame: {fileID: 21300000, guid: 6589c385430484cbcb5c84e7d800c54f, type: 3}
+        Color: {r: 1, g: 0.9315591, b: 0, a: 1}
         Id: 2
         IsAvailableAtStart: 1
     00000002:
       type: {class: HeroData, ns: , asm: Assembly-CSharp}
       data:
         Name: Gill
-        Health: 40
-        AttackPower: 10
+        Health: 30
+        AttackPower: 15
         StartingLevel: 1
         PowerUpPerLevel: 0.1
+        Sprite: {fileID: 21300000, guid: 337c5691f3c2a4824809d55405e29ddd, type: 3}
+        Frame: {fileID: 21300000, guid: 6589c385430484cbcb5c84e7d800c54f, type: 3}
+        Color: {r: 0, g: 0.27430224, b: 1, a: 1}
         Id: 3
         IsAvailableAtStart: 1
     00000003:
       type: {class: HeroData, ns: , asm: Assembly-CSharp}
       data:
         Name: Virk
-        Health: 40
-        AttackPower: 10
+        Health: 50
+        AttackPower: 15
         StartingLevel: 1
         PowerUpPerLevel: 0.1
+        Sprite: {fileID: 21300000, guid: 337c5691f3c2a4824809d55405e29ddd, type: 3}
+        Frame: {fileID: 21300000, guid: 6589c385430484cbcb5c84e7d800c54f, type: 3}
+        Color: {r: 1, g: 0, b: 0.5991268, a: 1}
         Id: 4
         IsAvailableAtStart: 0
     00000004:
@@ -70,39 +82,51 @@ MonoBehaviour:
       data:
         Name: Orb
         Health: 40
-        AttackPower: 10
+        AttackPower: 20
         StartingLevel: 1
         PowerUpPerLevel: 0.1
+        Sprite: {fileID: 21300000, guid: 337c5691f3c2a4824809d55405e29ddd, type: 3}
+        Frame: {fileID: 21300000, guid: 6589c385430484cbcb5c84e7d800c54f, type: 3}
+        Color: {r: 0.44477654, g: 0, b: 1, a: 1}
         Id: 5
         IsAvailableAtStart: 0
     00000005:
       type: {class: HeroData, ns: , asm: Assembly-CSharp}
       data:
         Name: Astra
-        Health: 40
-        AttackPower: 10
+        Health: 50
+        AttackPower: 25
         StartingLevel: 1
         PowerUpPerLevel: 0.1
+        Sprite: {fileID: 21300000, guid: 337c5691f3c2a4824809d55405e29ddd, type: 3}
+        Frame: {fileID: 21300000, guid: 6589c385430484cbcb5c84e7d800c54f, type: 3}
+        Color: {r: 0, g: 0.91298866, b: 1, a: 1}
         Id: 6
         IsAvailableAtStart: 0
     00000006:
       type: {class: HeroData, ns: , asm: Assembly-CSharp}
       data:
         Name: Kasandra
-        Health: 40
-        AttackPower: 10
+        Health: 80
+        AttackPower: 5
         StartingLevel: 1
         PowerUpPerLevel: 0.1
+        Sprite: {fileID: 21300000, guid: 337c5691f3c2a4824809d55405e29ddd, type: 3}
+        Frame: {fileID: 21300000, guid: 6589c385430484cbcb5c84e7d800c54f, type: 3}
+        Color: {r: 0.62368524, g: 1, b: 0, a: 1}
         Id: 7
         IsAvailableAtStart: 0
     00000007:
       type: {class: HeroData, ns: , asm: Assembly-CSharp}
       data:
         Name: Medu
-        Health: 40
-        AttackPower: 10
+        Health: 70
+        AttackPower: 15
         StartingLevel: 1
         PowerUpPerLevel: 0.1
+        Sprite: {fileID: 21300000, guid: 337c5691f3c2a4824809d55405e29ddd, type: 3}
+        Frame: {fileID: 21300000, guid: 6589c385430484cbcb5c84e7d800c54f, type: 3}
+        Color: {r: 0.49056602, g: 0.14578141, b: 0.14578141, a: 1}
         Id: 8
         IsAvailableAtStart: 0
     00000008:
@@ -110,18 +134,24 @@ MonoBehaviour:
       data:
         Name: Keta
         Health: 40
-        AttackPower: 10
+        AttackPower: 40
         StartingLevel: 1
         PowerUpPerLevel: 0.1
+        Sprite: {fileID: 21300000, guid: 337c5691f3c2a4824809d55405e29ddd, type: 3}
+        Frame: {fileID: 21300000, guid: 6589c385430484cbcb5c84e7d800c54f, type: 3}
+        Color: {r: 0, g: 0.3679245, b: 0.21096565, a: 1}
         Id: 9
         IsAvailableAtStart: 0
     00000009:
       type: {class: HeroData, ns: , asm: Assembly-CSharp}
       data:
         Name: Samur
-        Health: 40
+        Health: 200
         AttackPower: 10
         StartingLevel: 1
         PowerUpPerLevel: 0.1
+        Sprite: {fileID: 21300000, guid: 337c5691f3c2a4824809d55405e29ddd, type: 3}
+        Frame: {fileID: 21300000, guid: 6589c385430484cbcb5c84e7d800c54f, type: 3}
+        Color: {r: 0.32156864, g: 0.11324678, b: 0, a: 1}
         Id: 10
         IsAvailableAtStart: 0

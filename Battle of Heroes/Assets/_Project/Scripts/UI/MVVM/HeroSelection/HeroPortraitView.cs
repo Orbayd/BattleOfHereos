@@ -28,6 +28,11 @@ namespace BattleOfHeroes.Showcase.UI
             _txtName.text = model.Data.HeroData.Name;
             _outLine.enabled = false;
             _selectable.interactable = model.Data.IsAvailable;
+            _imgPortrait.sprite = model.Data.HeroData.Frame;
+            if(model.Data.IsAvailable)
+            {
+                _imgPortrait.color = model.Data.HeroData.Color;
+            }
 
             model.PropertyChanged += OnNotifyPropertyChanged;
         }

@@ -99,4 +99,6 @@ public class HeroConfig : ScriptableObject
             IsAvailableAtStart = true,
         },
     };
-}
+    
+}  
+

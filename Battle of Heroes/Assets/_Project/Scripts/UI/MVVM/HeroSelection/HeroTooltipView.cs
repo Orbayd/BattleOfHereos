@@ -18,12 +18,16 @@ namespace BattleOfHeroes.Showcase.UI
         [SerializeField]
         private TMP_Text _textExperience;
 
+        [SerializeField]
+        private TMP_Text _textLevel;
+
         protected override void OnBind(HeroTooltipViewModel model)
         {
             _txtName.text = model.Data.HeroData.Name;
             _txtHealth.text = model.Data.HeroData.Health.ToString();
             _txtAttackPower.text = model.Data.HeroData.AttackPower.ToString();
             _textExperience.text = model.Data.Experience.ToString();
+            _textLevel.text = model.Data.Level.ToString();
         }
 
         private float cooldown = 5.0f;

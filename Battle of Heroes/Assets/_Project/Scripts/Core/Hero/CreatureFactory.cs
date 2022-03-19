@@ -20,22 +20,22 @@ namespace BattleOfHeroes.Showcase.Core
             return monster;
         }
 
-        public Monster CreateMonster(GameObject prefab, Vector2 position, int level)
+        public Monster CreateMonster(GameObject prefab, HeroData data, Vector2 position, int level)
         {
             
-            var MonsterData = new HeroData()
-            {
-                Name = "Monster",
-                Health = 100,
-                AttackPower = 10,
-                StartingLevel = level,
-                PowerUpPerLevel = 0.2f,
-            };
+            // var MonsterData = new HeroData()
+            // {
+            //     Name = "Monster",
+            //     Health = 100,
+            //     AttackPower = 10,
+            //     StartingLevel = level,
+            //     PowerUpPerLevel = 0.2f,
+            // };
 
             var heroDbo = new HeroDbo()
             {
                 Level = level,
-                HeroData = MonsterData,
+                HeroData = data,
                 Id = 0
             };
 

@@ -10,6 +10,9 @@ namespace BattleOfHeroes.Showcase.Managers
         [SerializeField]
         private HeroConfig _heroConfig;
 
+        [SerializeField]
+        private MonsterConfig _monsterConfig;
+
         [Header("UI Dependencies")]
         [SerializeField]
         private UIConfig _uiConfig;
@@ -33,7 +36,7 @@ namespace BattleOfHeroes.Showcase.Managers
             }
             if (!ServiceLocator.HasService<TurnManager>())
             {
-                var turnManager = new TurnManager(new WorldFactory(_spawnConfig,ServiceLocator.GetService<RepositoryService>().Dbo));
+                var turnManager = new TurnManager(new WorldFactory(_spawnConfig,_monsterConfig,ServiceLocator.GetService<RepositoryService>().Dbo));
                 ServiceLocator.AddService<TurnManager>(turnManager);
             }
         }

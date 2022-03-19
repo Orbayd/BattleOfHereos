@@ -20,7 +20,8 @@ namespace BattleOfHeroes.Showcase.Core
             _attackPower = _dbo.HeroData.AttackPower + ((_dbo.Level - 1) * _dbo.HeroData.PowerUpPerLevel) * _dbo.HeroData.AttackPower;
             _maxHealth = _dbo.HeroData.Health + ((_dbo.Level - 1) * _dbo.HeroData.PowerUpPerLevel) * _dbo.HeroData.Health;
             _health = _maxHealth;
-            //GetComponent<SpriteRenderer>().sprite = dbo.HeroData.Sprite;
+            GetComponent<SpriteRenderer>().sprite = dbo.HeroData.Sprite;
+            GetComponent<SpriteRenderer>().color = dbo.HeroData.Color;
         }
         public void Attack(ICreature target, Vector2 pos)
         {
@@ -82,7 +83,7 @@ namespace BattleOfHeroes.Showcase.Core
         public void SetHealthBar()
         {
             _healthbar.SetHealth(_health / _maxHealth);
-            _healthbar.SetText($"{_health} / {_maxHealth}");
+            _healthbar.SetText($"{(int)_health} / {_maxHealth}");
         }
 
         public HeroDbo GetCreatureData()

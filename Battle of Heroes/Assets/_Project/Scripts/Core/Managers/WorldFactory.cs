@@ -10,11 +10,13 @@ namespace BattleOfHeroes.Showcase.Managers
         private SpawnConfig _spawnConfig;
         private CreatureFactory _factory;
         private UserDbo _dbo;
-        public WorldFactory(SpawnConfig config, UserDbo dbo)
+        private MonsterConfig _monsterConfig;
+        public WorldFactory(SpawnConfig config, MonsterConfig monsterConfig, UserDbo dbo)
         {
             _spawnConfig = config;
             _dbo = dbo;
             _factory = new CreatureFactory();
+            _monsterConfig = monsterConfig;
         }
 
         public List<CreatureBase> CreateHeroes()
@@ -44,7 +46,9 @@ namespace BattleOfHeroes.Showcase.Managers
         public List<CreatureBase> CreateMonsters()
         {
             var monsters = new List<CreatureBase>();
-            var monster = _factory.CreateMonster(_spawnConfig.MonsterTemplate, _spawnConfig.MonsterPosition, _dbo.Level);
+            var index = UnityEngine.Random.Range(0,_monsterConfig.MonsterSprites.Count);
+            _monsterConfig.Monster.Sprite = _monsterConfig.MonsterSprites[index];
+            var monster = _factory.CreateMonster(_spawnConfig.MonsterTemplate,_monsterConfig.Monster, _spawnConfig.MonsterPosition, _dbo.Level);
             monster.InitBillboard(CreateBillboard(_spawnConfig.BillboardTemplate));
             monsters.Add(monster);
             return monsters;

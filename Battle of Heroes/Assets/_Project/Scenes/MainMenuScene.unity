@@ -316,7 +316,7 @@ GameObject:
   - component: {fileID: 1114791814}
   - component: {fileID: 1114791813}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: DependencyManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -335,6 +335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _heroConfig: {fileID: 11400000, guid: fe429affa06d74a1299229bb7761052d, type: 2}
+  _monsterConfig: {fileID: 11400000, guid: 351a7a23abab14226b2bd40412916842, type: 2}
   _uiConfig: {fileID: 11400000, guid: 8f91509cad066413cb906ce4ca570fa5, type: 2}
   _spawnConfig: {fileID: 11400000, guid: 265245984030d4f4db283c5ee59a0bba, type: 2}
 --- !u!4 &1114791814
