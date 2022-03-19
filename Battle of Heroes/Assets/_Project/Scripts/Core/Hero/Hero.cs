@@ -19,7 +19,7 @@ namespace BattleOfHeroes.Showcase.Core
 
         public void OnMouseUp()
         {
-            if (Time.time - _deltaTime < 3f)
+            if (Time.time - _deltaTime < 1f)
             {
                 MessageBus.Publish<HeroAttackEvent>(new HeroAttackEvent(this, Type));
             }

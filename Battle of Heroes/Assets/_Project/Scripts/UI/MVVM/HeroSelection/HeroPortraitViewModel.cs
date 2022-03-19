@@ -22,7 +22,7 @@ namespace BattleOfHeroes.Showcase.UI
 
         public void OnItemSelected(float deltaTime, Vector2 position)
         {
-            if(deltaTime < 3.0f)
+            if(deltaTime < 1.0f)
             {
                 Debug.Log($"[INFO] Hero Selected{Data.HeroData.Name}");
                 PublishSelectHero();
