@@ -82,15 +82,24 @@ namespace BattleOfHeroes.Showcase.Managers
         {
             if (view is HeroSelectionView heroSelectionView)
             {
-                var model = new HeroSelectionViewModel(_userDbo);
-                heroSelectionView.Bind(model);
+                heroSelectionView.Bind(new HeroSelectionViewModel(_userDbo));
                 _viewMap.Add(ViewName.HeroSelection, view);
             }
             else if (view is BattleResultView battleResultView)
             {
-                var model = new BattleResultViewModel();
-                battleResultView.Bind(model);
+
+                battleResultView.Bind(new BattleResultViewModel());
                 _viewMap.Add(ViewName.BattleResult, view); 
+            }
+            else if(view is StartView startView)
+            {
+                startView.Bind(new StartViewModel());
+                _viewMap.Add(ViewName.Start,view);
+            }
+            else if(view is BattleView battleView)
+            {
+                battleView.Bind(new BattleViewModel(_userDbo));
+                _viewMap.Add(ViewName.Battle,view);
             }
         }
 
@@ -105,7 +114,7 @@ namespace BattleOfHeroes.Showcase.Managers
 
         private void OnShowTooltip(ShowToolTipEvent e)
         {
-            _tooltipView.Bind(new HeroTooltipViewModel(e.Data.HeroData));
+            _tooltipView.Bind(new HeroTooltipViewModel(e.Data));
             _tooltipView.transform.position = e.Position;
             _tooltipView.Show(true);
         }

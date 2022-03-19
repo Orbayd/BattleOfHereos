@@ -29,79 +29,99 @@ MonoBehaviour:
       type: {class: HeroData, ns: , asm: Assembly-CSharp}
       data:
         Name: Jack
-        Health: 10
+        Health: 40
         AttackPower: 100
-        Level: 1
-        Experience: 0
+        StartingLevel: 1
+        PowerUpPerLevel: 0.1
+        Id: 1
+        IsAvailableAtStart: 1
     00000001:
       type: {class: HeroData, ns: , asm: Assembly-CSharp}
       data:
         Name: Joe
-        Health: 0
+        Health: 40
         AttackPower: 10
-        Level: 1
-        Experience: 0
+        StartingLevel: 1
+        PowerUpPerLevel: 0.1
+        Id: 2
+        IsAvailableAtStart: 1
     00000002:
       type: {class: HeroData, ns: , asm: Assembly-CSharp}
       data:
         Name: Gill
-        Health: 10
+        Health: 40
         AttackPower: 10
-        Level: 1
-        Experience: 0
+        StartingLevel: 1
+        PowerUpPerLevel: 0.1
+        Id: 3
+        IsAvailableAtStart: 1
     00000003:
       type: {class: HeroData, ns: , asm: Assembly-CSharp}
       data:
         Name: Virk
         Health: 40
         AttackPower: 10
-        Level: 1
-        Experience: 0
+        StartingLevel: 1
+        PowerUpPerLevel: 0.1
+        Id: 4
+        IsAvailableAtStart: 0
     00000004:
       type: {class: HeroData, ns: , asm: Assembly-CSharp}
       data:
         Name: Orb
         Health: 40
         AttackPower: 10
-        Level: 1
-        Experience: 0
+        StartingLevel: 1
+        PowerUpPerLevel: 0.1
+        Id: 5
+        IsAvailableAtStart: 0
     00000005:
       type: {class: HeroData, ns: , asm: Assembly-CSharp}
       data:
         Name: Astra
         Health: 40
         AttackPower: 10
-        Level: 1
-        Experience: 0
+        StartingLevel: 1
+        PowerUpPerLevel: 0.1
+        Id: 6
+        IsAvailableAtStart: 0
     00000006:
       type: {class: HeroData, ns: , asm: Assembly-CSharp}
       data:
         Name: Kasandra
         Health: 40
         AttackPower: 10
-        Level: 1
-        Experience: 0
+        StartingLevel: 1
+        PowerUpPerLevel: 0.1
+        Id: 7
+        IsAvailableAtStart: 0
     00000007:
       type: {class: HeroData, ns: , asm: Assembly-CSharp}
       data:
         Name: Medu
         Health: 40
         AttackPower: 10
-        Level: 1
-        Experience: 0
+        StartingLevel: 1
+        PowerUpPerLevel: 0.1
+        Id: 8
+        IsAvailableAtStart: 0
     00000008:
       type: {class: HeroData, ns: , asm: Assembly-CSharp}
       data:
         Name: Keta
         Health: 40
         AttackPower: 10
-        Level: 1
-        Experience: 0
+        StartingLevel: 1
+        PowerUpPerLevel: 0.1
+        Id: 9
+        IsAvailableAtStart: 0
     00000009:
       type: {class: HeroData, ns: , asm: Assembly-CSharp}
       data:
         Name: Samur
         Health: 40
         AttackPower: 10
-        Level: 1
-        Experience: 0
+        StartingLevel: 1
+        PowerUpPerLevel: 0.1
+        Id: 10
+        IsAvailableAtStart: 0

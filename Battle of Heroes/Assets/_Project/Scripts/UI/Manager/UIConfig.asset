@@ -17,10 +17,14 @@ MonoBehaviour:
     Views:
     - Name: 2
       Prefab: {fileID: 138289154188219666, guid: e563d380b4f4f4346b71ce5eb030bce6, type: 3}
+    - Name: 0
+      Prefab: {fileID: 4823717351787312487, guid: d8b4cf917ca364987b78335f239fe0cc, type: 3}
   - SceneName: GameScene
     Views:
     - Name: 1
       Prefab: {fileID: 4287469973211483595, guid: 4201bee0a0857416dba240e810165d51, type: 3}
+    - Name: 5
+      Prefab: {fileID: 7453749281926734720, guid: 0ae64c8f03db849c89e822b27dc7fff6, type: 3}
   Commons:
   - Name: 3
     Prefab: {fileID: 322890139086868608, guid: 52a1c4d16ee184c5eb2d1cac953f3f23, type: 3}

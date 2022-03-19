@@ -16,6 +16,9 @@ namespace BattleOfHeroes.Showcase.UI
         private Image _imgPortrait;
 
         [SerializeField]
+        private Selectable _selectable;
+
+        [SerializeField]
         private Outline _outLine;
 
         private float _deltaTime;
@@ -24,6 +27,7 @@ namespace BattleOfHeroes.Showcase.UI
         {
             _txtName.text = model.Data.HeroData.Name;
             _outLine.enabled = false;
+            _selectable.interactable = model.Data.IsAvailable;
 
             model.PropertyChanged += OnNotifyPropertyChanged;
         }
@@ -39,6 +43,10 @@ namespace BattleOfHeroes.Showcase.UI
             {
                 _outLine.enabled = DataContex.IsSelected;
             }
+            else if(e.PropertyName.Equals(nameof(DataContex.IsInteractible)))
+            {
+                _selectable.interactable = DataContex.IsInteractible;
+            }
         }
 
 
@@ -49,7 +57,7 @@ namespace BattleOfHeroes.Showcase.UI
 
         public void OnPointerUp(PointerEventData eventData)
         {
-            //Debug.Log("[INFO] Pointer Event" + _txtName.text);
+            Debug.Log("[INFO] Pointer Event" + _txtName.text);
             DataContex.OnItemSelected(Time.time - _deltaTime,this.GetComponent<RectTransform>().position);
         }
     }

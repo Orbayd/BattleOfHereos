@@ -19,3 +19,4 @@ MonoBehaviour:
   MonsterPosition: {x: 4.8, y: 0}
   HeroTemplate: {fileID: 4836965429976313097, guid: 02f39cf91c7fb424ca7eacada0acd50c, type: 3}
   MonsterTemplate: {fileID: 7759839283890802857, guid: f5638473817bb4214a4c2058465c8fd3, type: 3}
+  BillboardTemplate: {fileID: 1621245391536488639, guid: 9a454b27ab65744909807930cd4efa42, type: 3}

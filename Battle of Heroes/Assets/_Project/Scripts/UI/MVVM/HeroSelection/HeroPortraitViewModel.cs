@@ -11,6 +11,9 @@ namespace BattleOfHeroes.Showcase.UI
         public HeroDbo Data {get; private set;}
         private bool _isSelected = false;
         public bool IsSelected { get {return _isSelected;} set{ _isSelected = value; NotifyPropertyChanged();}}
+        public bool _isInteractible = false;
+        public bool IsInteractible {get {return Data.IsAvailable;} set{_isInteractible = value; NotifyPropertyChanged();}}
+
 
         public HeroPortraitViewModel(HeroDbo data)
         {
@@ -19,13 +22,14 @@ namespace BattleOfHeroes.Showcase.UI
 
         public void OnItemSelected(float deltaTime, Vector2 position)
         {
-            //Debug.Log($"[Info] Delta Time {deltaTime}");
             if(deltaTime < 3.0f)
             {
+                Debug.Log($"[INFO] Hero Selected{Data.HeroData.Name}");
                 PublishSelectHero();
             }
             else
             {
+                Debug.Log($"[INFO] Tooltip Shown {Data.HeroData.Name}");
                 PublishShowTooltip(position);
             }
         }

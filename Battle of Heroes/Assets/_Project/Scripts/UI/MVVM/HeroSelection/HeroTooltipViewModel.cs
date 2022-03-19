@@ -6,9 +6,9 @@ namespace BattleOfHeroes.Showcase.UI
 {
     public class HeroTooltipViewModel : ViewModelBase
     {
-        public HeroData Data {get; private set;}
+        public HeroDbo Data {get; private set;}
 
-        public HeroTooltipViewModel(HeroData data)
+        public HeroTooltipViewModel(HeroDbo data)
         {
             Data = data;
         }

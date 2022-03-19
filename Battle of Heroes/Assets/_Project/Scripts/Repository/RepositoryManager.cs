@@ -34,7 +34,7 @@ public class RepositoryService : IService
 
         foreach (var herodbo in Dbo.Heroes)
         {
-            herodbo.HeroData = _config.Heroes.First(x => x.Name == herodbo.Id);
+            herodbo.HeroData = _config.Heroes.First(x => x.Id == herodbo.Id);
         }
     }
 
@@ -47,7 +47,9 @@ public class RepositoryService : IService
         {
             var herodbo = new HeroDbo();
             herodbo.HeroData = data;
-            herodbo.Id = data.Name;
+            herodbo.Id = data.Id;
+            herodbo.Level = data.StartingLevel;
+            herodbo.IsAvailable = data.IsAvailableAtStart;
             Dbo.Heroes.Add(herodbo);
         }
         Save();

@@ -30,40 +30,14 @@ namespace BattleOfHeroes.Showcase.Managers
             {
                 ServiceLocator.AddService<UIManager>(new UIManager(_uiConfig, ServiceLocator.GetService<RepositoryService>().Dbo));
                 ServiceLocator.GetService<UIManager>().Init();
-                SceneManager.sceneLoaded += OnSceneLoaded;
-                SceneManager.sceneUnloaded += OnSceneUnLoaded;
             }
             if (!ServiceLocator.HasService<TurnManager>())
             {
-                var wordFactory = new WorldFactory(_spawnConfig);
-                var turnManager = new TurnManager(wordFactory, ServiceLocator.GetService<UIManager>());
+                var turnManager = new TurnManager(new WorldFactory(_spawnConfig,ServiceLocator.GetService<RepositoryService>().Dbo));
                 ServiceLocator.AddService<TurnManager>(turnManager);
             }
         }
 
-        void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-        {
-            Debug.Log($"[INFO] Scene Loaded {scene}");
-            ServiceLocator.GetService<UIManager>().InitPresentation(SceneManager.GetActiveScene().name);
-            if (scene.name == "GameScene")
-            {
-                ServiceLocator.GetService<TurnManager>().Init();
-            }
-            else if (scene.name == "MainMenuScene")
-            {
-                ServiceLocator.GetService<UIManager>().Navigate(Enums.ViewName.HeroSelection);
-            }
-        }
-
-        void OnSceneUnLoaded(Scene scene)
-        {
-            Debug.Log($"[INFO] Scene UnLoaded {scene}");
-            ServiceLocator.GetService<UIManager>().TerminatePresentation();
-            if (scene.name == "GameScene")
-            {
-                ServiceLocator.GetService<TurnManager>().Terminate();
-            }
-        }
     }
 
 }

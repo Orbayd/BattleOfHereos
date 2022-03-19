@@ -13,15 +13,14 @@ namespace BattleOfHeroes.Showcase.Managers
         private List<CreatureBase> _heroes = new List<CreatureBase>();
         private List<CreatureBase> _monsters = new List<CreatureBase>();
         private bool IsPlayersTurn = true;
-        private UIManager _uIManager;
+
         private RepositoryService _repostioryService;
 
         private WorldFactory _worldFactory;
 
-        public TurnManager(WorldFactory factory, UIManager uIManager)
+        public TurnManager(WorldFactory factory)
         {
             _worldFactory = factory;
-            _uIManager = uIManager;
         }
 
         public void Init()
@@ -112,7 +111,6 @@ namespace BattleOfHeroes.Showcase.Managers
         private void BattleFinished(bool isLost)
         {
             MessageBus.Publish(new BattleFinishedEvent(isLost,_heroes.ToArray()));
-            _uIManager.Navigate(Enums.ViewName.BattleResult);
         }
 
         private void AddEvents()

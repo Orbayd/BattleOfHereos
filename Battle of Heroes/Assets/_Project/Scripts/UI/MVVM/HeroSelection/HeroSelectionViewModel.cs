@@ -14,6 +14,10 @@ namespace BattleOfHeroes.Showcase.UI
         
         private List<HeroDbo> _selectedHereos  = new List<HeroDbo>();
 
+        public bool _showInfo;
+
+        public bool ShowInfo { get {return _showInfo;} set{_showInfo = value;NotifyPropertyChanged();}} 
+
         public HeroSelectionViewModel(UserDbo config)
         {
             Itemsource = config.Heroes;
@@ -21,9 +25,16 @@ namespace BattleOfHeroes.Showcase.UI
 
         public void OnPlayButtonClicked()
         {
-            //MessageBus.Publish<SceneChangeEvent>(new SceneChangeEvent(1,_selectedHereos));
-            PersistentStorage.SelectedHeroes = _selectedHereos;
-            var scene = SceneManager.LoadSceneAsync(1, new LoadSceneParameters(LoadSceneMode.Single) { });
+           if(_selectedHereos.Count ==3 )
+           {
+                PersistentStorage.SelectedHeroes = _selectedHereos;
+                var scene = SceneManager.LoadSceneAsync(1, new LoadSceneParameters(LoadSceneMode.Single) { });
+                ShowInfo = false;
+           }
+           else
+           {
+               ShowInfo = true;
+           }
         }
 
         public override void OnBind()

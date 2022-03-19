@@ -20,9 +20,9 @@ namespace BattleOfHeroes.Showcase.UI
 
         protected override void OnBind(HeroTooltipViewModel model)
         {
-            _txtName.text = model.Data.Name;
-            _txtHealth.text = model.Data.Health.ToString();
-            _txtAttackPower.text = model.Data.AttackPower.ToString();
+            _txtName.text = model.Data.HeroData.Name;
+            _txtHealth.text = model.Data.HeroData.Health.ToString();
+            _txtAttackPower.text = model.Data.HeroData.AttackPower.ToString();
             _textExperience.text = model.Data.Experience.ToString();
         }
 

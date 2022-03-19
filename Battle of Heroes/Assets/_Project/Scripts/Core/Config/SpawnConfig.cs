@@ -17,4 +17,7 @@ public class SpawnConfig : ScriptableObject
 
     [SerializeField]
     public GameObject MonsterTemplate;
+
+    [SerializeField]
+    public GameObject BillboardTemplate;
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using BattleOfHeroes.Showcase.Core;
+using UnityEngine;
 
 namespace BattleOfHeroes.Showcase.Managers
 {
@@ -8,11 +9,11 @@ namespace BattleOfHeroes.Showcase.Managers
     {
         private SpawnConfig _spawnConfig;
         private CreatureFactory _factory;
-
-        public WorldFactory(SpawnConfig config)
+        private UserDbo _dbo;
+        public WorldFactory(SpawnConfig config, UserDbo dbo)
         {
             _spawnConfig = config;
-    
+            _dbo = dbo;
             _factory = new CreatureFactory();
         }
 
@@ -33,6 +34,7 @@ namespace BattleOfHeroes.Showcase.Managers
             for (int i = 0; i < heroesdata.Count; i++)
             {
                 var hero = _factory.CreateHero(_spawnConfig.HeroTemplate, heroesdata[i], _spawnConfig.HereosPositon[i]);
+                hero.InitBillboard(CreateBillboard(_spawnConfig.BillboardTemplate));
                 heros.Add(hero);
             }
 
@@ -42,9 +44,15 @@ namespace BattleOfHeroes.Showcase.Managers
         public List<CreatureBase> CreateMonsters()
         {
             var monsters = new List<CreatureBase>();
-            var monster = _factory.CreateMonster(_spawnConfig.MonsterTemplate, _spawnConfig.MonsterPosition, 1);
+            var monster = _factory.CreateMonster(_spawnConfig.MonsterTemplate, _spawnConfig.MonsterPosition, _dbo.Level);
+            monster.InitBillboard(CreateBillboard(_spawnConfig.BillboardTemplate));
             monsters.Add(monster);
             return monsters;
+        }
+
+        public HealthBarUI CreateBillboard(GameObject billboard)
+        {
+            return GameObject.Instantiate(billboard,MonoBehaviour.FindObjectOfType<Canvas>().transform).GetComponent<HealthBarUI>();
         }
     }
 }

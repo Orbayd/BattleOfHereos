@@ -12,7 +12,7 @@ namespace BattleOfHeroes.Showcase.Enums
 
     public enum ViewName
     {
-        Start, BattleResult, HeroSelection, Tooltip
+        Start, BattleResult, HeroSelection, Tooltip , HealthBar , Battle
     }
 
 }
