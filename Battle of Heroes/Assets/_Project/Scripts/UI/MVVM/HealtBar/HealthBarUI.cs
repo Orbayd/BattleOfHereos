@@ -42,7 +42,7 @@ public class HealthBarUI : MonoBehaviour
     {
         _txtDamage.gameObject.SetActive(true);
         _txtDamage.text = $"-{dmg}";
-        //_txtDamage.transform.DOShakePosition(1.0f, strength: new Vector3(0, 0.1f, 0), vibrato: 5, randomness: 1, snapping: false, fadeOut: true);
-       // _txtDamage.transform.DOMoveY( _txtDamage.transform.position.y + 2,1).OnComplete(()=> _txtDamage.gameObject.SetActive(false));          
+        _txtDamage.transform.DOShakePosition(1.0f, strength: new Vector3(0, 0.1f, 0), vibrato: 5, randomness: 1, snapping: false, fadeOut: true);
+        _txtDamage.transform.DOMoveY( _txtDamage.transform.position.y + 2, 0.5f).OnComplete(()=> _txtDamage.gameObject.SetActive(false));          
     }
 }

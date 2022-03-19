@@ -17,9 +17,10 @@ namespace BattleOfHeroes.Showcase.Core
         {
             _animHandler = animHandler;
             _dbo = dbo;
-            _attackPower =_dbo.HeroData.AttackPower + ((_dbo.HeroData.StartingLevel -1) * _dbo.HeroData.PowerUpPerLevel) * _dbo.HeroData.AttackPower;
-            _maxHealth = _dbo.HeroData.Health + ((_dbo.HeroData.StartingLevel -1) * _dbo.HeroData.PowerUpPerLevel) *  _dbo.HeroData.Health;
+            _attackPower = _dbo.HeroData.AttackPower + ((_dbo.Level - 1) * _dbo.HeroData.PowerUpPerLevel) * _dbo.HeroData.AttackPower;
+            _maxHealth = _dbo.HeroData.Health + ((_dbo.Level - 1) * _dbo.HeroData.PowerUpPerLevel) * _dbo.HeroData.Health;
             _health = _maxHealth;
+            //GetComponent<SpriteRenderer>().sprite = dbo.HeroData.Sprite;
         }
         public void Attack(ICreature target, Vector2 pos)
         {
@@ -62,10 +63,12 @@ namespace BattleOfHeroes.Showcase.Core
                 isAlive = false;
                 Die();
             }
-            _healthbar.SetDamage(dmg);
-            SetHealthBar();
-
-            MessageBus.Publish<DamageTaken>(new DamageTaken(this, Type, isAlive));   
+            else
+            {
+                _healthbar.SetDamage(dmg);
+                SetHealthBar();
+            }
+            MessageBus.Publish<DamageTaken>(new DamageTaken(this, Type, isAlive));
         }
 
         public void InitBillboard(HealthBarUI healthBar)
